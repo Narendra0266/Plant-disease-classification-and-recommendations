@@ -1,0 +1,16 @@
+# Local OS and Python artifacts
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+
+# Generated notebook outputs and local logs
+outputs/
+run_output.log
+path_to_save/
+
+# Android/Gradle local build state
+.gradle/
+.idea/
+**/build/
+PlantCareNet_AS_Version_salvage/

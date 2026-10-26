@@ -70,5 +70,16 @@ This repository includes the following:
 
 ### **Clone the Repository**
 ```sh
-git clone https://github.com/github.com/Muhaimin008/Plant-disease-classification-and-recommendations.git
+git clone https://github.com/Muhaimin008/Plant-disease-classification-and-recommendations.git
 cd plant-disease-classification-and-recommendations
+```
+
+## Run the PlantCareNet website locally
+
+This repository now includes a local web app for uploading a leaf photo and viewing a PlantCareNet prediction.
+
+1. Install the app dependencies with `python3 -m pip install -r requirements-app.txt`.
+2. Start the app with `python3 -m streamlit run app.py`.
+3. Open the local address printed in the terminal (usually `http://localhost:8501`).
+
+The app uses `model.keras` and `class_names.json` from the repository root. It does not need to download the dataset to make predictions.

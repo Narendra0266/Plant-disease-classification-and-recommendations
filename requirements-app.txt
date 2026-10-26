@@ -1,0 +1,5 @@
+streamlit>=1.40
+tensorflow>=2.16
+numpy<2.6
+opencv-python-headless>=4.9
+Pillow>=10
