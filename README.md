@@ -78,7 +78,7 @@ cd plant-disease-classification-and-recommendations
 
 This repository now includes a local web app for uploading a leaf photo and viewing a PlantCareNet prediction.
 
-1. Install the app dependencies with `python3 -m pip install -r requirements-app.txt`.
+1. Install the app dependencies with `python3 -m pip install -r requirements.txt`.
 2. Start the app with `python3 -m streamlit run app.py`.
 3. Open the local address printed in the terminal (usually `http://localhost:8501`).
 
