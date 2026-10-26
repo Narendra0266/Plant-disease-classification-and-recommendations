@@ -68,7 +68,40 @@ st.markdown("""
   .notice { background:#fff9e9; border:1px solid #f0dfac; border-radius:12px; padding:.85rem 1rem; margin-top:1rem; color:#6a5724; font-size:.9rem; }
   .footer { border-top:1px solid var(--line); margin-top:2.4rem; padding-top:1.1rem; color:var(--muted); font-size:.83rem; }
   div[data-testid="stMetric"] { background:#f3f7ef; border:1px solid var(--line); padding:14px; border-radius:14px; }
-  @media (max-width:700px) { .block-container { padding:1.1rem 1rem 2rem; } .brandbar { margin-bottom:1.2rem; } .hero { min-height:0; padding:1.7rem 1.4rem; border-radius:21px; } .hero-art { display:none; } .hero h1 { font-size:2.35rem; } .steps { gap:7px; } .step { padding:10px 8px; gap:7px; } .step small { display:none; } }
+  @media (max-width:700px) {
+    .block-container { padding:1rem .9rem 2rem; }
+    .brandbar { margin-bottom:1.1rem; }
+    .brand { font-size:1.03rem; gap:9px; }
+    .brandmark { width:38px; height:38px; }
+    .pill { padding:6px 9px; font-size:.68rem; }
+    .hero { min-height:0; padding:1.5rem 1.2rem; border-radius:21px; }
+    .hero-art { display:none; }
+    .hero h1 { font-size:2.15rem; line-height:1.04; }
+    .hero p { font-size:.96rem; }
+    .hero-tag { font-size:.72rem; line-height:1.4; }
+    .steps { gap:7px; margin:1rem 0 1.5rem; }
+    .step { padding:9px 8px; gap:7px; border-radius:12px; }
+    .step-number { width:28px; height:28px; border-radius:9px; }
+    .step strong { font-size:.78rem; }
+    .step small { display:none; }
+    [data-testid="stFileUploader"] { padding:.7rem; }
+    [data-testid="stFileUploader"] button { min-height:46px; padding:0 16px; }
+    .hint { font-size:.8rem; line-height:1.45; margin:.55rem 0 1.2rem; }
+    div[data-testid="stHorizontalBlock"] { flex-direction:column !important; gap:1rem !important; }
+    div[data-testid="stHorizontalBlock"] > div[data-testid="column"] { width:100% !important; flex:1 1 100% !important; min-width:100% !important; }
+    .result-card { padding:1.15rem; }
+    .result-condition { font-size:1.55rem; overflow-wrap:anywhere; }
+    .advice { font-size:.9rem; }
+    .footer { margin-top:1.8rem; }
+  }
+  @media (max-width:380px) {
+    .block-container { padding-left:.65rem; padding-right:.65rem; }
+    .pill { font-size:.62rem; }
+    .hero h1 { font-size:1.92rem; }
+    .steps { gap:5px; }
+    .step { padding:8px 6px; }
+    .step strong { font-size:.72rem; }
+  }
 </style>
 <div class="brandbar">
   <div class="brand"><span class="brandmark">🌱</span><span>PlantCareNet</span></div>
