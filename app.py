@@ -1,9 +1,11 @@
 from html import escape
 from pathlib import Path
 import json
+import os
 
 import cv2
 import numpy as np
+import requests
 import streamlit as st
 from PIL import Image
 import tensorflow as tf
@@ -148,7 +150,114 @@ def prepare_image(upload):
     resized = cv2.resize(bgr, (75, 75), interpolation=cv2.INTER_LINEAR)
     return image, np.expand_dims(resized.astype(np.float32) / 255.0, axis=0)
 
+
+def reference_guidance(label):
+    """Return conservative, general first steps for the predicted class."""
+    normalized = label.lower()
+    if "healthy" in normalized:
+        return (
+            "The model classified this leaf as healthy. Keep checking new growth and "
+            "the undersides of leaves, water consistently, and avoid overwatering."
+        )
+    if any(term in normalized for term in ("virus", "mosaic", "yellow_leaf_curl", "leaf_curl")):
+        return (
+            "The label suggests a possible viral disease. Keep this plant separate from "
+            "healthy plants while you inspect it, clean tools between plants, and check "
+            "for insects that may spread disease. Viral symptoms can resemble other problems; "
+            "ask a local agricultural extension service to confirm before removing plants "
+            "or applying treatments."
+        )
+    if "bacterial" in normalized:
+        return (
+            "The label suggests a possible bacterial problem. Avoid handling wet plants, "
+            "remove fallen plant debris, clean tools between plants, and avoid splashing "
+            "water onto leaves. Confirm the cause locally before applying any treatment."
+        )
+    if any(term in normalized for term in ("insect", "pest")):
+        return (
+            "The label suggests possible pest damage. Inspect both sides of several leaves "
+            "for insects or eggs, isolate the plant if practical, and identify the pest "
+            "before choosing a control method."
+        )
+    if any(term in normalized for term in ("wilt",)):
+        return (
+            "The label suggests possible wilt. Check soil moisture and drainage, and inspect "
+            "nearby plants for similar symptoms. Wilt can have several causes, so do not "
+            "change irrigation or apply chemicals based only on this image prediction; "
+            "seek local diagnosis."
+        )
+    if any(term in normalized for term in (
+        "blight", "rust", "mildew", "spot", "mold", "rot", "smut", "scab", "anthracnose"
+    )):
+        return (
+            "The label suggests a possible leaf disease. Remove fallen debris, keep foliage "
+            "dry when watering, and improve airflow around plants. Photograph several leaves "
+            "and ask a local agricultural extension service to confirm the disease before "
+            "using a treatment."
+        )
+    return (
+        "Treat this as a preliminary image classification. Inspect several leaves and the "
+        "whole plant, note recent weather and watering, and ask a local agricultural expert "
+        "to confirm the cause before applying treatment."
+    )
+
+
+def read_secret(name, default=None):
+    value = os.environ.get(name, default)
+    try:
+        value = st.secrets.get(name, value)
+    except Exception:
+        # Local runs may not have a Streamlit secrets file configured.
+        pass
+    return value
+
+
+def generate_llm_guidance(label, confidence, user_context, api_key, model_name):
+    """Ask the OpenAI Responses API for cautious, contextual plant-care guidance."""
+    instructions = (
+        "You are a cautious plant-care information assistant. The disease label is an "
+        "image-classifier prediction, not a confirmed diagnosis; its score is not a "
+        "calibrated probability. Do not claim certainty or invent symptoms. Give concise, "
+        "low-risk next steps, what the user should inspect, and prevention suggestions. "
+        "Do not recommend pesticide or fungicide brands, chemical doses, or treatment "
+        "schedules. Encourage confirmation by a local agricultural extension service "
+        "before treatment. State that advice can vary by crop and location."
+    )
+    prompt = (
+        f"Predicted class: {label}\n"
+        f"Model score: {confidence:.1%} (not calibrated)\n"
+        f"User observations: {user_context or 'None provided'}\n\n"
+        "Provide: (1) a plain-language interpretation, (2) safe immediate steps, "
+        "(3) prevention and monitoring, and (4) what information or expert check "
+        "would help confirm the cause."
+    )
+    response = requests.post(
+        "https://api.openai.com/v1/responses",
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        json={"model": model_name, "instructions": instructions, "input": prompt, "max_output_tokens": 500},
+        timeout=45,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    text_parts = [
+        part.get("text", "")
+        for item in payload.get("output", [])
+        if item.get("type") == "message"
+        for part in item.get("content", [])
+        if part.get("type") == "output_text"
+    ]
+    answer = "\n".join(part for part in text_parts if part).strip()
+    if not answer:
+        raise ValueError("The AI service returned no text. Please try again.")
+    return answer
+
 st.markdown('<div class="section-label">Start with a leaf photo</div>', unsafe_allow_html=True)
+recommendation_mode = st.radio(
+    "Choose recommendation mode",
+    ["Reference Mode", "LLM Mode"],
+    horizontal=True,
+    help="Reference Mode gives a fixed, cautious guide. LLM Mode creates tailored guidance from the predicted class and your optional notes.",
+)
 upload = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png", "webp"], label_visibility="collapsed")
 st.markdown('<div class="hint">JPG, PNG, or WEBP · One leaf in focus · Natural light works best</div>', unsafe_allow_html=True)
 
@@ -182,10 +291,36 @@ if upload is not None:
                 st.markdown(result_html, unsafe_allow_html=True)
                 if confidence < 0.45:
                     st.markdown('<div class="notice">The model is uncertain. Try a sharper, closer photo, and compare with a local plant-health expert.</div>', unsafe_allow_html=True)
-                elif "healthy" in predicted_label.lower():
-                    st.markdown('<div class="advice">This image was classified as <strong>healthy</strong>. Keep monitoring the plant for changes.</div>', unsafe_allow_html=True)
+                st.subheader("Recommendations")
+                if recommendation_mode == "Reference Mode":
+                    st.caption("Starter reference guide · general information, not an expert-confirmed diagnosis")
+                    st.markdown(f'<div class="advice">{escape(reference_guidance(predicted_label))}</div>', unsafe_allow_html=True)
                 else:
-                    st.markdown('<div class="advice"><strong>Practical first steps</strong><br>Isolate the affected plant if possible, remove badly damaged leaves, avoid wetting foliage while watering, and improve airflow. Confirm the issue with a local agricultural extension service before applying any treatment.</div>', unsafe_allow_html=True)
+                    st.caption("AI-generated guidance · review with a local agricultural expert before treatment")
+                    user_context = st.text_input(
+                        "Anything else about the plant? (optional)",
+                        placeholder="For example: crop age, recent rain, or where spots first appeared",
+                        key="llm_plant_context",
+                    )
+                    st.caption("When you generate guidance, the predicted class, model score, and your optional note are sent to the OpenAI API. Do not enter personal or sensitive information.")
+                    api_key = read_secret("OPENAI_API_KEY")
+                    model_name = read_secret("OPENAI_MODEL", "gpt-4.1-mini")
+                    if not api_key:
+                        st.info(
+                            "To enable LLM Mode, add OPENAI_API_KEY to your app's Streamlit Cloud "
+                            "Secrets. Reference Mode works without an API key."
+                        )
+                    elif st.button("Generate tailored guidance", type="primary"):
+                        try:
+                            with st.spinner("Preparing cautious plant-care guidance…"):
+                                advice = generate_llm_guidance(
+                                    predicted_label, confidence, user_context, api_key, model_name
+                                )
+                            st.markdown(f'<div class="advice">{escape(advice).replace(chr(10), "<br>")}</div>', unsafe_allow_html=True)
+                        except requests.RequestException as exc:
+                            st.error(f"Could not contact the AI service: {exc}")
+                        except (ValueError, KeyError) as exc:
+                            st.error(f"Could not generate guidance: {exc}")
             with st.expander("View other possible classes"):
                 for idx in order[1:4]:
                     other_plant, other_condition = readable_label(labels[int(idx)])
@@ -200,4 +335,4 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown('<div class="footer">PlantCareNet is an image-classification aid, not a confirmed diagnosis. Lighting, background, and photo quality can affect the result.</div>', unsafe_allow_html=True)
+st.markdown('<div class="footer">PlantCareNet is an image-classification aid, not a confirmed diagnosis. Scores are not calibrated probabilities. Lighting, background, and photo quality can affect results. Confirm a suspected disease with a local agricultural expert before treatment.</div>', unsafe_allow_html=True)

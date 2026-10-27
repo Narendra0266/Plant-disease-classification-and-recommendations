@@ -83,3 +83,17 @@ This repository now includes a local web app for uploading a leaf photo and view
 3. Open the local address printed in the terminal (usually `http://localhost:8501`).
 
 The app uses `model.keras` and `class_names.json` from the repository root. It does not need to download the dataset to make predictions.
+
+### Recommendation modes
+
+- **Reference Mode** shows a fixed starter guide selected from the predicted class. It provides conservative general steps and is not a substitute for locally verified agricultural advice.
+- **LLM Mode** can generate tailored guidance from the predicted class and optional observations. It requires an OpenAI API key; without one, Reference Mode still works.
+
+To enable LLM Mode on Streamlit Community Cloud, open the app's **Settings → Secrets** and add:
+
+```toml
+OPENAI_API_KEY = "your-api-key"
+OPENAI_MODEL = "gpt-4.1-mini"
+```
+
+Keep the key in Streamlit Secrets. Do not put it in the source code or commit it to GitHub. When a user selects **Generate tailored guidance**, the app sends the predicted class, model score, and optional note to the OpenAI API.
