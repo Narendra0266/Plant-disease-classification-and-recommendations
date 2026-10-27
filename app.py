@@ -366,7 +366,7 @@ if upload is not None:
                     if not api_key:
                         st.info(
                             "To enable LLM Mode, add OPENAI_API_KEY to your app's Streamlit Cloud "
-                            "Secrets. Reference Mode works without an API key."
+                            "Secrets (Manage app → Settings → Secrets). Standard Advice works without an API key."
                         )
                     elif st.button("Generate tailored guidance", type="primary"):
                         try:
