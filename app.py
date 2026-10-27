@@ -1,7 +1,9 @@
 from html import escape
 from pathlib import Path
+import difflib
 import json
 import os
+import re
 
 import cv2
 import numpy as np
@@ -13,6 +15,7 @@ import tensorflow as tf
 ROOT = Path(__file__).resolve().parent
 MODEL_PATH = ROOT / "model.keras"
 LABELS_PATH = ROOT / "class_names.json"
+RECOMMENDATIONS_PATH = ROOT / "recommendations.json"
 
 st.set_page_config(page_title="PlantCareNet | Leaf check", page_icon="🌿", layout="wide")
 st.markdown("""
@@ -137,6 +140,11 @@ def load_model():
 def load_labels():
     return json.loads(LABELS_PATH.read_text(encoding="utf-8"))
 
+
+@st.cache_data
+def load_recommendations():
+    return json.loads(RECOMMENDATIONS_PATH.read_text(encoding="utf-8"))
+
 def readable_label(label):
     parts = label.split("_", 1)
     plant = parts[0].replace("EggPlant", "Eggplant")
@@ -153,54 +161,41 @@ def prepare_image(upload):
 
 
 def reference_guidance(label):
-    """Return conservative, general first steps for the predicted class."""
-    normalized = label.lower()
-    if "healthy" in normalized:
-        return (
-            "The model classified this leaf as healthy. Keep checking new growth and "
-            "the undersides of leaves, water consistently, and avoid overwatering."
-        )
-    if any(term in normalized for term in ("virus", "mosaic", "yellow_leaf_curl", "leaf_curl")):
-        return (
-            "The label suggests a possible viral disease. Keep this plant separate from "
-            "healthy plants while you inspect it, clean tools between plants, and check "
-            "for insects that may spread disease. Viral symptoms can resemble other problems; "
-            "ask a local agricultural extension service to confirm before removing plants "
-            "or applying treatments."
-        )
-    if "bacterial" in normalized:
-        return (
-            "The label suggests a possible bacterial problem. Avoid handling wet plants, "
-            "remove fallen plant debris, clean tools between plants, and avoid splashing "
-            "water onto leaves. Confirm the cause locally before applying any treatment."
-        )
-    if any(term in normalized for term in ("insect", "pest")):
-        return (
-            "The label suggests possible pest damage. Inspect both sides of several leaves "
-            "for insects or eggs, isolate the plant if practical, and identify the pest "
-            "before choosing a control method."
-        )
-    if any(term in normalized for term in ("wilt",)):
-        return (
-            "The label suggests possible wilt. Check soil moisture and drainage, and inspect "
-            "nearby plants for similar symptoms. Wilt can have several causes, so do not "
-            "change irrigation or apply chemicals based only on this image prediction; "
-            "seek local diagnosis."
-        )
-    if any(term in normalized for term in (
-        "blight", "rust", "mildew", "spot", "mold", "rot", "smut", "scab", "anthracnose"
-    )):
-        return (
-            "The label suggests a possible leaf disease. Remove fallen debris, keep foliage "
-            "dry when watering, and improve airflow around plants. Photograph several leaves "
-            "and ask a local agricultural extension service to confirm the disease before "
-            "using a treatment."
-        )
-    return (
-        "Treat this as a preliminary image classification. Inspect several leaves and the "
-        "whole plant, note recent weather and watering, and ask a local agricultural expert "
-        "to confirm the cause before applying treatment."
+    """Find the bundled reference record matching a model class."""
+    plant, disease = label.split("_", 1)
+    plant = plant.replace("EggPlant", "Eggplant")
+    normalize = lambda value: re.sub(r"[^a-z0-9]", "", value.lower())
+    candidates = [
+        item for item in load_recommendations()
+        if normalize(item.get("Plant", "")) == normalize(plant)
+    ]
+    if not candidates:
+        return None
+    match = max(
+        candidates,
+        key=lambda item: difflib.SequenceMatcher(
+            None, normalize(disease), normalize(item.get("Disease", ""))
+        ).ratio(),
     )
+    return match
+
+
+def create_gradcam_overlay(model, image, model_input, class_index):
+    """Build an optional Grad-CAM overlay using the final convolution layer."""
+    conv_layer = model.get_layer("conv2d_4")
+    grad_model = tf.keras.Model(model.inputs, [conv_layer.output, model.output])
+    with tf.GradientTape() as tape:
+        conv_output, predictions = grad_model(model_input, training=False)
+        class_score = predictions[:, class_index]
+    gradients = tape.gradient(class_score, conv_output)
+    weights = tf.reduce_mean(gradients, axis=(1, 2), keepdims=True)
+    heatmap = tf.reduce_sum(conv_output * weights, axis=-1)[0]
+    heatmap = tf.maximum(heatmap, 0)
+    heatmap = heatmap / (tf.reduce_max(heatmap) + 1e-8)
+    heatmap = cv2.resize(heatmap.numpy(), image.size, interpolation=cv2.INTER_CUBIC)
+    colored = cv2.applyColorMap(np.uint8(np.clip(heatmap, 0, 1) * 255), cv2.COLORMAP_JET)
+    colored = Image.fromarray(cv2.cvtColor(colored, cv2.COLOR_BGR2RGB))
+    return Image.blend(image, colored, 0.35)
 
 
 def read_secret(name, default=None):
@@ -220,6 +215,7 @@ def generate_llm_guidance(label, confidence, user_context, api_key, model_name):
         "image-classifier prediction, not a confirmed diagnosis; its score is not a "
         "calibrated probability. Do not claim certainty or invent symptoms. Give concise, "
         "low-risk next steps, what the user should inspect, and prevention suggestions. "
+        "Structure the answer with headings: Symptoms to inspect, Prevention, and Safe next steps. "
         "Do not recommend pesticide or fungicide brands, chemical doses, or treatment "
         "schedules. Encourage confirmation by a local agricultural extension service "
         "before treatment. State that advice can vary by crop and location."
@@ -228,9 +224,8 @@ def generate_llm_guidance(label, confidence, user_context, api_key, model_name):
         f"Predicted class: {label}\n"
         f"Model score: {confidence:.1%} (not calibrated)\n"
         f"User observations: {user_context or 'None provided'}\n\n"
-        "Provide: (1) a plain-language interpretation, (2) safe immediate steps, "
-        "(3) prevention and monitoring, and (4) what information or expert check "
-        "would help confirm the cause."
+        "Use the requested headings, make clear the label is not confirmed, and recommend "
+        "professional confirmation before treatment."
     )
     response = requests.post(
         "https://api.openai.com/v1/responses",
@@ -288,6 +283,14 @@ if upload is not None:
                             "so it may look blocky when enlarged. For a clearer preview, upload the "
                             "original photo rather than a thumbnail or screenshot."
                         )
+                    with st.expander("See what the model focused on (Grad-CAM)"):
+                        if st.button("Generate focus map", key="generate_gradcam"):
+                            try:
+                                overlay = create_gradcam_overlay(model, image, model_input, int(order[0]))
+                                st.image(overlay, caption="Heatmap overlay for the predicted class", width="stretch")
+                                st.caption("Grad-CAM highlights image regions that influenced this prediction. It is an explanation aid, not proof that the model found the true disease cause.")
+                            except Exception as exc:
+                                st.info(f"Grad-CAM is unavailable for this model run: {exc}")
             with right:
                 result_html = f'''<div class="result-card">
                   <div class="result-kicker">PlantCareNet result</div>
@@ -301,8 +304,23 @@ if upload is not None:
                     st.markdown('<div class="notice">The model is uncertain. Try a sharper, closer photo, and compare with a local plant-health expert.</div>', unsafe_allow_html=True)
                 st.subheader("Recommendations")
                 if recommendation_mode == "Reference Mode":
-                    st.caption("Starter reference guide · general information, not an expert-confirmed diagnosis")
-                    st.markdown(f'<div class="advice">{escape(reference_guidance(predicted_label))}</div>', unsafe_allow_html=True)
+                    guide = reference_guidance(predicted_label)
+                    if guide:
+                        st.caption("Reference guide · bundled with the Android app")
+                        sections = [
+                            ("Symptoms", guide.get("Symptoms", "")),
+                            ("Prevention", guide.get("Recommendations(for prevention)", "")),
+                            ("Care and treatment", guide.get("Recommendation(For cure and take care)", "")),
+                        ]
+                        for title, detail in sections:
+                            if detail.strip():
+                                st.markdown(
+                                    f'<div class="advice"><strong>{escape(title)}</strong><br>{escape(detail).replace(chr(10), "<br>")}</div>',
+                                    unsafe_allow_html=True,
+                                )
+                        st.caption("These are reference suggestions, not a confirmed diagnosis. Treatment choices depend on crop, location, and local rules. Confirm with an agricultural expert and follow product labels before applying treatments.")
+                    else:
+                        st.info("No matching reference entry was found for this class. Ask a local agricultural expert to confirm the cause.")
                 else:
                     st.caption("AI-generated guidance · review with a local agricultural expert before treatment")
                     user_context = st.text_input(
@@ -324,7 +342,7 @@ if upload is not None:
                                 advice = generate_llm_guidance(
                                     predicted_label, confidence, user_context, api_key, model_name
                                 )
-                            st.markdown(f'<div class="advice">{escape(advice).replace(chr(10), "<br>")}</div>', unsafe_allow_html=True)
+                            st.markdown(advice)
                         except requests.RequestException as exc:
                             st.error(f"Could not contact the AI service: {exc}")
                         except (ValueError, KeyError) as exc:
@@ -342,5 +360,29 @@ else:
       <div><strong style="color:#183f2d">A good photo helps</strong><br><span style="color:#66756a">Fill the frame with one leaf, keep it steady, and avoid strong shadows. You’ll see the prediction here after upload.</span></div>
     </div>
     """, unsafe_allow_html=True)
+
+with st.expander("How the PlantCareNet workflow works"):
+    steps = st.columns(4)
+    workflow = [
+        ("01 · Dataset", "The project model recognizes 35 plant-health classes."),
+        ("02 · Preprocess", "Images are converted, resized to 75 × 75, and scaled to 0–1."),
+        ("03 · Classify", "A CNN produces class scores; the highest score becomes the displayed prediction."),
+        ("04 · Evaluate", "The notebook includes a confusion matrix and multiclass ROC chart from its saved evaluation run."),
+    ]
+    for column, (title, detail) in zip(steps, workflow):
+        with column:
+            st.markdown(f"**{title}**")
+            st.caption(detail)
+    st.info("The current notebook uses an 85/15 train-test split. It does not implement cross-validation or automated hyperparameter tuning, so the site does not report those as completed experiments.")
+    evaluation = st.columns(2)
+    confusion_path = ROOT / "outputs" / "confusion_matrix_last.png"
+    roc_path = ROOT / "outputs" / "roc_curve_multiclass_final.png"
+    if confusion_path.exists():
+        with evaluation[0]:
+            st.image(str(confusion_path), caption="Confusion matrix saved from the notebook", width="stretch")
+    if roc_path.exists():
+        with evaluation[1]:
+            st.image(str(roc_path), caption="Multiclass ROC chart saved from the notebook", width="stretch")
+    st.caption("These saved charts describe the notebook evaluation run; they are not recalculated for each uploaded photo.")
 
 st.markdown('<div class="footer">PlantCareNet is an image-classification aid, not a confirmed diagnosis. Scores are not calibrated probabilities. Lighting, background, and photo quality can affect results. Confirm a suspected disease with a local agricultural expert before treatment.</div>', unsafe_allow_html=True)

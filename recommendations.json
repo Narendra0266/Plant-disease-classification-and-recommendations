@@ -1,0 +1,247 @@
+[
+  {
+    "Plant": "Corn",
+    "Disease": "Northern Leaf Blight",
+    "Symptoms": "\n1. Gray or tan spots that are long and oval-shaped. \n2. The lower leaves get damaged first and it spreads upwards. \n3. The plant can't make as much food because of the damaged leaves. \n4. Leaves die earlier than usual, affecting the corn growth.",
+    "Recommendations(for prevention)": "\n1. Use corn varieties that are resistant to the disease. \n2. Grow different crops each year to prevent the fungus from building up. \n3. Plow under old corn plants after harvest to get rid of infected material. \n4. Apply fungicides if you see signs of the disease, especially in cool, wet weather.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides(eg: Azoxystrobin, Propiconazole, Mancozeb) when you first see signs of the disease. \n2. Cut off and destroy leaves that have the disease. \n3. Thin out plants to improve air circulation around them. \n4. Avoid wetting the leaves by using drip irrigation instead of sprinklers."
+  },
+  {
+    "Plant": "Corn",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Leaves should be a vibrant green without any spots or lesions. \n2. Stalks should be tall and sturdy, standing upright without bending or breaking. \n3. Plants should grow uniformly with consistent height and leaf development. \n4. Ears of corn should be well-filled with kernels, evenly spaced, and covered by healthy husks. \n5. Roots should be white or light-colored, not brown or decayed, and they should anchor the plant firmly in the soil.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Ensure the corn gets consistent and adequate water, especially during dry periods. \n2. Use balanced fertilizers to provide essential nutrients throughout the growing season. \n3. Keep the area around the corn free of weeds to reduce competition for nutrients and water. \n4. Regularly check for signs of pests or diseases and take action promptly if you find any. \n5. Plant corn with enough space between plants to allow for good air circulation and sunlight exposure."
+  },
+  {
+    "Plant": "Corn",
+    "Disease": "Gray Leaf Spot(cercospora leaf spot)",
+    "Symptoms": "\n1. Tiny, rectangular gray spots appear on the leaves. \n2. Leaves may turn yellow around the gray spots. \n3. Spots grow into long, narrow, rectangular lesions. \n4. In severe cases, leaves can turn brown and die. \n5. The disease can stunt overall plant growth and reduce yields.",
+    "Recommendations(for prevention)": "\n1. Use corn types that are resistant to gray leaf spot. \n2. Rotate corn with other crops to prevent the fungus from building up in the soil. \n3. Remove and destroy old corn plants after harvest to reduce fungal spores. \n4. Plant corn with enough space between plants to ensure good air circulation. \n5. Use drip irrigation to keep leaves dry and reduce fungal infection risk.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides(eg: Propiconazole,Azoxystrobin, Chlorothalonil ) at the first sign of the disease and follow label instructions. \n2.: Cut off and destroy leaves that show symptoms to prevent spread. \n3. Thin out dense plantings to allow better air circulation around plants. \n4. Use drip irrigation or water the base of the plants to keep leaves dry. \n5. Keep a close eye on your corn for early signs of the disease and take action immediately if symptoms appear."
+  },
+  {
+    "Plant": "Corn",
+    "Disease": "Common Rust",
+    "Symptoms": "\n1. Small orange to reddish-brown pustules develop on both sides of the leaves. \n2. Leaves may turn yellow or brown around the rust pustules. \n3. Severe infections can reduce the plant's ability to produce food, leading to stunted growth. \n4. Infected plants may appear weaker and shorter than healthy ones. \n5. Leaves may drop prematurely due to severe infection.",
+    "Recommendations(for prevention)": "\n1. Choose corn varieties that are resistant or tolerant to Common Rust. \n2. Rotate corn with other crops to reduce the buildup of rust spores in the soil. \n3. Plant corn early to avoid periods of high humidity, which favors rust development. \n4. Apply fungicides preventatively if rust is a recurring problem in your area. \n5. Clean up and destroy corn residue after harvest to reduce overwintering spores.",
+    "Recommendation(For cure and take care)": "\n1. Apply Fungicides like Propiconazole or Azoxystrobin at the first signs of rust to prevent its spread. \n2. Prune and discard leaves with rust to reduce spores and prevent further infection. \n3. Thin out crowded plants to increase airflow and reduce humidity around leaves. \n4. Use drip irrigation to keep leaves dry and discourage rust development. "
+  },
+  {
+    "Plant": "Rice",
+    "Disease": "Bacterial Leaf Blight",
+    "Symptoms": "\n1. Small, water-soaked spots appear on the leaf edges. \n2. Leaves turn yellow starting from the tips and edges. \n3. Lesions expand and coalesce, turning into large, brown, dead patches. \n4. Leaves may curl and dry out completely. \n5. Infected plants show reduced growth and vigor.",
+    "Recommendations(for prevention)": "\n1. Use Resistant Varieties that are resistant to bacterial leaf blight. \n2. Treat seeds with appropriate bactericides before planting. \n3. Remove and destroy infected plant debris and weeds. \n4. Avoid excessive irrigation and ensure good drainage. \n5. Apply fertilizers appropriately, avoiding excessive nitrogen.",
+    "Recommendation(For cure and take care)": "\n1. Use bactericides like copper-based compounds at the first signs of the disease. \n2. Uproot and destroy infected plants to prevent the spread of bacteria. \n3. Use Clean tools and equipment to prevent contamination. \n4. Space plants adequately to improve air circulation and reduce humidity. \n5. Frequently check fields for early symptoms and take immediate action if detected."
+  },
+  {
+    "Plant": "Rice",
+    "Disease": "Brown Spot",
+    "Symptoms": "\n1. Small, circular brown spots with gray or dark centers appear on leaves. \n2. Spots are often surrounded by a yellow halo. \n3. Severe infections can cause large areas of the leaf to turn brown and die. \n4. Infected plants may appear weak and stunted. \n5. Brown spots can also appear on grains, affecting quality.",
+    "Recommendations(for prevention)": "\n1. Plant rice varieties that are resistant to brown spot. \n2. Treat seeds with fungicides before planting. \n3. Ensure proper use of fertilizers, especially avoiding excessive nitrogen. \n4. Remove and destroy infected plant debris and weeds. \n5. Maintain appropriate water levels and avoid water stress.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Mancozeb or Tricyclazole when symptoms first appear. \n2. Cut off and dispose of severely infected leaves to reduce spore load. \n3. Clean tools and equipment to prevent the spread of the fungus. \n4. Thin out plants to improve air circulation and reduce humidity. \n5. Frequently inspect fields for early signs of brown spots and act promptly."
+  },
+  {
+    "Plant": "Rice",
+    "Disease": "Leaf Smut",
+    "Symptoms": "\n1. Small, black smut balls or sori appear on leaf surfaces. \n2. Leaves may turn yellow around the smut balls. \n3. Infected leaves can become twisted or curled. \n4. Leaves may die off early, starting from the tips. \n5. Infected plants may show stunted growth and reduced vigor.",
+    "Recommendations(for prevention)": "\n1. Plant rice varieties that are resistant to leaf smut. \n2. Treat seeds with appropriate fungicides before planting. \n3. Remove and destroy infected plant debris and weeds. \n4. Ensure good drainage and avoid waterlogging. \n5. Apply fertilizers appropriately, avoiding excessive nitrogen.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Propiconazole at the first signs of the disease. \n2. Cut off and destroy leaves with smut balls to reduce spore load. \n3. Clean tools and equipment to prevent contamination. \n4. Space plants adequately to improve air circulation and reduce humidity. \n5. Frequently check fields for early symptoms and take immediate action if detected."
+  },
+  {
+    "Plant": "Rice",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Leaves should be a uniform, vibrant green color without any spots or discoloration. \n2. Stalks should be tall, sturdy, and upright. \n3. Plants should grow uniformly with consistent height and development. \n4. Grains should be plump, evenly filled, and covered by healthy husks.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Ensure consistent and appropriate water levels, avoiding both drought and waterlogging. \n2. Apply fertilizers correctly to provide essential nutrients without overuse. \n3. Regularly inspect plants for any signs of pests or diseases and take immediate action if detected. \n4. Plant with adequate spacing to allow good air circulation and reduce humidity. \n5. Keep the field free of weeds to reduce competition for nutrients and water."
+  },
+  {
+    "Plant": "Wheat",
+    "Disease": "Yellow Rust",
+    "Symptoms": "\n1. Small, bright yellow pustules appear on the leaves in stripes. \n2. Leaves may turn yellow around the pustules. \n3. Infected plants may show reduced growth and vigor. \n4. Leaves may die and drop off prematurely. \n5. Long yellow streaks form along the length of the leaves.",
+    "Recommendations(for prevention)": "\n1. Use Resistant wheat varieties that are resistant to yellow rust. \n2. Plant wheat at the right time to avoid peak rust infection periods. \n3. Remove and destroy crop debris after harvest to reduce rust spores. \n4. Apply fertilizers correctly, avoiding excessive nitrogen. \n5. Space plants properly to improve air circulation and reduce humidity.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Tebuconazole or Azoxystrobin at the first signs of yellow rust. \n2. Cut off and dispose of leaves showing rust symptoms to reduce spore spread. \n3. Clean tools and equipment to prevent contamination. \n4. Frequently check the field for early symptoms and act promptly. \n5. Avoid overhead irrigation that wets the leaves; use ground-level watering methods."
+  },
+  {
+    "Plant": "Wheat",
+    "Disease": "Brown Rust",
+    "Symptoms": "\n1. Small, reddish-brown pustules appear on the upper leaf surface. \n2. Leaves may turn yellow around the pustules. \n3. Severe infections can cause large areas of the leaf to turn brown and die. \n4. Infected plants may appear weak and stunted. \n5. Leaves may dry out and drop off prematurely.",
+    "Recommendations(for prevention)": "\n1. Plant wheat varieties that are resistant to brown rust. \n2. Plant wheat at the optimal time to avoid high-risk infection periods. \n3. Remove and destroy crop residues after harvest to reduce rust spores. \n4. Apply fertilizers correctly, avoiding excessive nitrogen. \n5. Space plants adequately to improve air circulation and reduce humidity.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Propiconazole or Tebuconazole when brown rust symptoms first appear. \n2. Cut off and dispose of leaves showing rust symptoms to reduce spore load. \n3. Clean tools and equipment to prevent the spread of rust spores. \n4. Check the field frequently for early signs of rust and act promptly. \n5. Avoid overhead watering that wets the leaves; use ground-level irrigation methods."
+  },
+  {
+    "Plant": "Wheat",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Leaves should be a uniform, vibrant green without any spots or discoloration. \n2. Stalks should be tall, sturdy, and standing upright. \n3. Plants should grow uniformly with consistent height and development. \n4. Grains should be plump, evenly filled, and enclosed in healthy husks.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Ensure consistent and appropriate watering, avoiding both drought and waterlogging. \n2. Apply fertilizers correctly to provide essential nutrients without overuse. \n3. Regularly inspect plants for any signs of pests or diseases and take immediate action if detected. \n4. Plant with adequate spacing to allow good air circulation and reduce humidity. \n5. Keep the field free of weeds to reduce competition for nutrients and water."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Late Blight",
+    "Symptoms": "\n1. Large, irregular, dark spots appear on leaves, stems, and fruits. \n2. A white, fuzzy mold may develop on the underside of leaves in humid conditions. \n3. Infected leaves turn brown, wilt, and die. \n4. Dark, sunken lesions develop on fruits, which can become mushy and rot. \n5. Dark brown to black lesions appear on stems, causing them to weaken and collapse.",
+    "Recommendations(for prevention)": "\n1. Plant tomato varieties that are resistant to late blight. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Avoid overhead watering; use drip irrigation to keep leaves dry. \n4. Remove and destroy plant debris and weeds to reduce sources of infection. \n5. Practice crop rotation to prevent the buildup of the blight pathogen in the soil.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Copper-based sprays at the first signs of late blight. \n2. Uproot and destroy infected plants to prevent the spread of the disease. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Frequently inspect plants for symptoms and take immediate action if blight is detected. \n5. Clean tools and equipment to prevent contamination and the spread of the pathogen."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Leaves should be a vibrant green color without any spots, yellowing, or wilting. \n2. Stems should be sturdy and upright, supporting the plant's weight. \n3. Plants should grow uniformly with consistent height and lush foliage. \n4. Tomatoes should be firm, evenly colored, and free of blemishes or rot.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Provide consistent and adequate water, avoiding both drought and waterlogging. \n2. Apply fertilizers properly to supply essential nutrients without overuse. \n3. Regularly inspect plants for any signs of pests or diseases and act promptly if detected. \n4. Ensure adequate spacing between plants for good air circulation and to reduce humidity. \n5. Keep the area around the plants free of weeds to minimize competition for nutrients and water."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Early Blight",
+    "Symptoms": "\n1. Small, dark brown spots with concentric rings appear on lower leaves. \n2. Leaves turn yellow around the spots and eventually die. \n3. Dark lesions develop on stems, which can cause girdling and plant collapse. \n4. Dark, sunken spots form on fruits, often near the stem end. \n5. Severely infected leaves drop off, leading to defoliation.",
+    "Recommendations(for prevention)": "\n1. Plant tomato varieties that are resistant to early blight. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Use drip irrigation to keep leaves dry and avoid overhead watering. \n4. Apply mulch around the base of plants to reduce soil splash and maintain moisture. \n5. Remove and destroy plant debris and weeds to reduce sources of infection.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Copper-based sprays at the first signs of early blight. \n2. Prune and dispose of leaves showing blight symptoms to reduce spore load. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Practice crop rotation to avoid planting tomatoes in the same soil year after year. \n5. Frequently inspect plants for symptoms and take immediate action if early blight is detected."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Septoria leaf Spot",
+    "Symptoms": "\n1. Small, circular spots with dark brown edges and lighter centers appear on lower leaves. \n2. Leaves turn yellow around the spots and eventually die. \n3. Severely infected leaves drop off, leading to defoliation. \n4. Dark spots with a water-soaked appearance may form on stems and petioles. \n5. Infected plants may show reduced growth and vigor.",
+    "Recommendations(for prevention)": "\n1. Plant tomato varieties that are resistant to Septoria leaf spot. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Use drip irrigation to keep leaves dry and avoid overhead watering. \n4. Remove and destroy plant debris and weeds to reduce sources of infection. \n5. Practice crop rotation to avoid planting tomatoes in the same soil year after year.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Copper-based sprays at the first signs of Septoria leaf spot. \n2. Prune and dispose of leaves showing Septoria symptoms to reduce spore load. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Clean tools and equipment to prevent the spread of the pathogen. \n5. Frequently inspect plants for symptoms and take immediate action if Septoria leaf spot is detected."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Tomato Yellow Leaf Curl Virus(TYLCV)",
+    "Symptoms": "\n1. Leaves turn yellow, especially around the edges and veins. \n2. Leaves curl upward and may become deformed. \n3. Infected plants show reduced growth and may appear bushy. \n4. Plants produce fewer and smaller fruits. \n5. Leaves become thick and brittle.",
+    "Recommendations(for prevention)": "\n1. Plant tomato varieties that are resistant to TYLCV. \n2. Implement measures to control whiteflies, which transmit the virus. \n3. Use floating row covers to protect plants from whiteflies. \n4. Remove and destroy infected plants and weeds that can harbor the virus. \n5. Ensure transplants are free from TYLCV.",
+    "Recommendation(For cure and take care)": "\n1. Use insecticides to control whitefly populations. \n2. Uproot and destroy infected plants to prevent virus spread. \n3. Use reflective mulches to repel whiteflies and reduce their numbers. \n4. Clean tools and equipment to prevent the spread of the virus. \n5. Frequently inspect plants for early symptoms and whitefly activity, taking immediate action if detected."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Bacterial Spot",
+    "Symptoms": "\n1. Tiny, water-soaked spots appear on leaves, stems, and fruits. \n2. Spots turn dark brown or black and become raised and rough. \n3. Infected leaves turn yellow, then brown, and may drop off. \n4. Dark, scabby spots appear on green and ripe tomatoes. \n5. Dark lesions develop on stems and petioles, which can girdle and kill them.",
+    "Recommendations(for prevention)": "\n1. Start with certified disease-free seeds or transplants. \n2. Practice crop rotation, avoiding planting tomatoes in the same soil consecutively. \n3. Remove and destroy infected plant debris and weeds. \n4. Space plants adequately to ensure good air circulation and reduce humidity. \n5. Use drip irrigation to keep leaves dry and prevent the spread of bacteria.",
+    "Recommendation(For cure and take care)": "\n1. Use copper-based bactericides at the first signs of bacterial spot. \n2. Prune and dispose of leaves showing bacterial spot symptoms to reduce bacterial load. \n3. Clean tools and equipment regularly to prevent contamination and spread. \n4. Water plants at the base to avoid wetting the leaves and reduce bacterial spread. \n5. Frequently inspect plants for symptoms and act promptly to manage outbreaks."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Target Spot",
+    "Symptoms": "\n1. Small, circular brown spots with concentric rings appear on leaves. \n2. Leaves turn yellow around the spots and eventually die. \n3. Dark, sunken spots develop on fruits, often leading to rot. \n4. Dark lesions appear on stems and petioles, causing weakening. \n5. Severely infected leaves drop off, leading to defoliation.",
+    "Recommendations(for prevention)": "\n1. Plant tomato varieties that are resistant to target spot. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Use drip irrigation to keep leaves dry and avoid overhead watering. \n4. Remove and destroy plant debris and weeds to reduce sources of infection. \n5. Practice crop rotation to avoid planting tomatoes in the same soil year after year.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Copper-based sprays at the first signs of target spot. \n2. Prune and dispose of leaves showing target spot symptoms to reduce spore load. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Clean tools and equipment to prevent the spread of the pathogen. \n5. Frequently inspect plants for symptoms and take immediate action if target spot is detected."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Tomato Mosaic Virus",
+    "Symptoms": "\n1. Leaves show a mottled pattern with light and dark green patches. \n2. Leaves may curl, wrinkle, or become distorted. \n3. Infected plants are often smaller and less vigorous. \n4. Fruits may be smaller, discolored, or have uneven ripening. \n5. Leaves may develop blisters or appear bumpy.",
+    "Recommendations(for prevention)": "\n1. Start with certified disease-free seeds or transplants. \n2. Practice crop rotation to prevent the buildup of the virus in the soil. \n3. Remove and destroy infected plant debris and weeds. \n4. Wash hands and tools thoroughly before and after handling plants. \n5. Implement measures to control aphids, which can spread the virus.",
+    "Recommendation(For cure and take care)": "\n1. Uproot and destroy infected plants immediately to prevent the spread of the virus. \n2. Regularly disinfect tools and equipment to prevent contamination. \n3. Use reflective mulches to repel aphids and reduce virus transmission. \n4. Frequently inspect plants for symptoms and take immediate action if the virus is detected. \n5. Minimize handling of plants when they are wet to reduce the spread of the virus."
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Leaf Mold",
+    "Symptoms": "\n1. Pale yellow spots appear on the upper side of leaves. \n2. A velvety, olive-green mold forms on the underside of the leaves beneath the yellow spots. \n3. Infected leaves curl, turn brown, and die. \n4. Plants produce fewer fruits, which may be smaller and of lower quality. \n5. Dark lesions can develop on stems and petioles.",
+    "Recommendations(for prevention)": "\n1. Plant tomato varieties that are resistant to leaf mold. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Use drip irrigation to keep leaves dry and avoid overhead watering. \n4. Remove and destroy plant debris and weeds to reduce sources of infection. \n5. Ensure proper ventilation in greenhouses to reduce humidity.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Copper-based sprays at the first signs of leaf mold. \n2. Prune and dispose of leaves showing mold symptoms to reduce spore load. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Clean tools and equipment to prevent the spread of the pathogen. \n5. Frequently inspect plants for symptoms and take immediate action if leaf mold is detected. "
+  },
+  {
+    "Plant": "Tomato",
+    "Disease": "Spider-mites ,Two spotted Spider Mite",
+    "Symptoms": "\n1. Tiny yellow or white speckles appear on leaves, giving them a stippled appearance. \n2. Fine webbing can be seen on the undersides of leaves and between branches. \n3. Leaves may turn bronze or brown and eventually die. \n4. Infested leaves curl, wilt, and drop prematurely. \n5. Plants may exhibit reduced growth and vigor due to severe mite infestations.",
+    "Recommendations(for prevention)": "\n1. Frequently inspect plants for early signs of spider mites. \n2. Keep plants healthy through proper watering and fertilization to reduce stress. \n3. Regularly hose down plants with water to dislodge mites and reduce their population. \n4. Keep the area around tomato plants free of weeds that can harbor mites. \n5. Plant tomato varieties that are less susceptible to spider mites.",
+    "Recommendation(For cure and take care)": "\n1. Use miticides like Abamectin or Bifenazate to control spider mite populations. \n2. Release beneficial insects like ladybugs or predatory mites that feed on spider mites. \n3. Remove and destroy heavily infested leaves to reduce mite numbers. \n4. Increase humidity around plants, as spider mites thrive in dry conditions. \n5. Spray plants with a strong jet of water to physically remove mites and disrupt their colonies."
+  },
+  {
+    "Plant": "Potato",
+    "Disease": "Early Blight",
+    "Symptoms": "\n1. Small, dark brown to black spots with concentric rings appear on older leaves. \n2. Leaves turn yellow around the spots and eventually die. \n3. Infected leaves may become blighted and drop off prematurely. \n4. Dark lesions develop on stems, which can cause them to weaken and break. \n5. Dark, sunken spots can appear on potato tubers and fruits, leading to rot.",
+    "Recommendations(for prevention)": "\n1. Plant potato varieties that are resistant to early blight. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Remove and destroy plant debris and weeds to reduce sources of infection. \n4. Practice crop rotation to prevent the buildup of the early blight pathogen in the soil. \n5. Use drip irrigation to keep leaves dry and avoid overhead watering.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Mancozeb at the first signs of early blight. \n2. Prune and dispose of leaves showing early blight symptoms to reduce spore load. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Clean tools and equipment to prevent the spread of the pathogen. \n5. Frequently inspect plants for symptoms and take immediate action if early blight is detected."
+  },
+  {
+    "Plant": "Potato",
+    "Disease": "Late Blight",
+    "Symptoms": "\n1. Irregular, dark green to black spots appear on leaves, often with a water-soaked appearance. \n2. White, fuzzy mold can develop on the undersides of leaves in humid conditions. \n3. Infected leaves turn brown, wilt, and die quickly. \n4. Dark brown to black lesions form on stems, leading to collapse. \n5. Potato tubers develop firm, brown, sunken lesions that can lead to soft rot.",
+    "Recommendations(for prevention)": "\n1. Plant potato varieties that are resistant to late blight. \n2. Space plants adequately to ensure good air circulation and reduce humidity. \n3. Remove and destroy plant debris and weeds to reduce sources of infection. \n4. Practice crop rotation to prevent the buildup of the late blight pathogen in the soil. \n5. Use drip irrigation to keep leaves dry and avoid overhead watering.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Mancozeb or Chlorothalonil at the first signs of late blight. \n2. Uproot and destroy infected plants to prevent the spread of the disease. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Clean tools and equipment to prevent the spread of the pathogen. \n5. Frequently inspect plants for symptoms and take immediate action if late blight is detected."
+  },
+  {
+    "Plant": "Potato",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Leaves are green and vibrant without yellowing or wilting. \n2. Stems are sturdy and upright, supporting healthy foliage. \n3. Plants exhibit uniform growth with consistent spacing between stems. \n4. No visible signs of spots, lesions, or discoloration on leaves or stems. \n5. Potatoes have smooth, firm skins without blemishes or sprouting.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Ensure soil is consistently moist but not waterlogged to promote healthy root development. \n2. Apply balanced fertilizer rich in potassium to support tuber development. \n3. Regularly mound soil around potato plants to protect tubers from sunlight and encourage additional root growth. \n4. Keep the potato patch weed-free to prevent competition for nutrients and water. \n5. Monitor for pests like potato beetles and aphids, and use appropriate control methods if necessary."
+  },
+  {
+    "Plant": "Cauliflower",
+    "Disease": "Black Rot",
+    "Symptoms": "\n1. Small, black spots appear on the leaves, starting at the edges. \n2. Leaves turn yellow around the black spots and eventually die. \n3. Dark, elongated lesions form on stems and petioles. \n4. Black, sunken spots develop on cauliflower heads, leading to decay. \n5. Affected tissue becomes soft and mushy, leading to a foul odor.",
+    "Recommendations(for prevention)": "\n1. Start with certified disease-free seeds or transplants. \n2. Practice crop rotation to prevent the buildup of the black spot pathogen in the soil. \n3. Space plants adequately to ensure good air circulation and reduce humidity. \n4. Use drip irrigation to keep leaves dry and avoid overhead watering. \n5. Remove and destroy plant debris and weeds to reduce sources of infection.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides like Chlorothalonil or Mancozeb at the first signs of black spot rot. \n2. Uproot and destroy infected plants to prevent the spread of the disease. \n3. Thin out plants and prune lower leaves to enhance air flow around the plants. \n4. Clean tools and equipment to prevent the spread of the pathogen. \n5. Frequently inspect plants for symptoms and take immediate action if black spot rot is detected."
+  },
+  {
+    "Plant": "Cauliflower",
+    "Disease": "Bacterial spot Rot",
+    "Symptoms": "\n1. Small, water-soaked lesions appear on leaves, stems, and curds (heads). \n2. Lesions grow and turn brown or black, often with a yellow halo. \n3. Infected leaves wilt, turn brown, and may die prematurely. \n4. Bacterial infection causes soft, watery rot on cauliflower curds. \n5. Dark, sunken lesions can develop on stems, causing weakening.",
+    "Recommendations(for prevention)": "\n1. Start with certified disease-free seeds or transplants. \n2. Remove and destroy plant debris and weeds to reduce sources of infection. \n3. Space plants adequately to ensure good air circulation and reduce humidity. \n4. Use drip irrigation to keep foliage dry and minimize bacterial spread. \n5. Practice crop rotation to prevent the buildup of bacteria in the soil.",
+    "Recommendation(For cure and take care)": "\n1. Use copper-based bactericides at the first signs of bacterial spot rot. \n2. Uproot and destroy severely infected plants to prevent further spread. \n3. Thin out plants and prune lower leaves to improve airflow and reduce humidity. \n4. Clean tools and equipment to prevent the spread of bacteria. \n5. Frequently inspect plants for symptoms and take prompt action if bacterial spot rot is detected."
+  },
+  {
+    "Plant": "Cauliflower",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Leaves are a healthy, vibrant green color without spots or discoloration. \n2. Cauliflower heads are compact, firm, and uniform in size. \n3. Stems are sturdy and able to support the weight of the cauliflower heads. \n4. Plants show uniform growth with consistent leaf development. \n5. No visible signs of pests such as holes, webs, or insect activity.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Provide consistent and adequate water, ensuring soil moisture remains even. \n2. Apply balanced fertilizer to provide essential nutrients without overfeeding. \n3. Keep the area around cauliflower plants free of weeds to reduce competition for nutrients. \n4. Regularly inspect plants for signs of pests and take appropriate measures if detected. \n5. Ensure cauliflower plants receive full sunlight for at least \n6 hours a day for optimal growth and development."
+  },
+  {
+    "Plant": "Cauliflower",
+    "Disease": "Downy Mildow",
+    "Symptoms": "\n1. Small, yellowish spots appear on the upper surface of leaves. \n2. Undersides of leaves develop a downy white or grayish growth. \n3. Infected leaves may curl downward or inward. \n4. Plants may show reduced vigor and growth. \n4. Leaves infected with downy mildew may drop prematurely.",
+    "Recommendations(for prevention)": "\n1. Plant cauliflower varieties that are resistant to downy mildew. \n2. Rotate crops to avoid planting cauliflower in the same location year after year. \n3. Space plants adequately to promote air circulation and reduce humidity. \n4. Use drip irrigation or water at the base of plants to keep foliage dry. \n5. Clean up and remove any infected plant debris promptly.",
+    "Recommendation(For cure and take care)": "\n1. Use fungicides labeled for downy mildew control, such as copper-based sprays. \n2. Remove and destroy severely infected leaves to reduce the spread of the disease. \n3. Prune overcrowded plants to improve airflow and reduce humidity levels. \n4. Regularly inspect plants for early signs of downy mildew and take immediate action if detected. \n5. Harvest cauliflower heads early if downy mildew is detected to salvage unaffected portions of the crop."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "Healthy",
+    "Symptoms": "\n1. Lush, uniformly green foliage without discoloration or spots. \n2. Firm, upright stems free of brittleness or damage. \n3. Smooth, glossy, firm fruits with no blemishes or irregularities. \n4. Regular and abundant production of flowers leading to fruit set. \n5. Consistent and vigorous growth with no stunting or deformities.",
+    "Recommendations(for prevention)": "",
+    "Recommendation(For cure and take care)": "\n1. Use fertile, well-drained soil enriched with organic matter. \n2. Water consistently at the base to avoid water stress or fungal issues. \n3. Regularly inspect plants to manage pests and diseases early. \n4. Rotate crops annually to prevent buildup of soil-borne problems. \n5. Space plants adequately to promote air circulation and reduce infection risk."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "Insect Pest Disease",
+    "Symptoms": "\n1. Small, irregular holes on leaves caused by feeding insects like caterpillars. \n2. Yellowing or wilting of leaves due to damaged veins and tissue. \n3. Presence of insects, like aphids, on stems or undersides of leaves. \n5. Distorted growth of fruits and leaves due to feeding on plant tissues. \n6. Black sooty mold may form where pests like aphids excrete honeydew.",
+    "Recommendations(for prevention)": "\n1. Use insect-resistant eggplant varieties to reduce pest infestation risk. \n2. Install physical barriers like mesh netting to prevent pests from reaching plants. \n3. Encourage natural predators, such as ladybugs, to control pest populations. \n4. Regularly inspect plants for early signs of pest activity and remove them. \n5. Rotate crops annually to break pest life cycles and reduce soil-borne pests.",
+    "Recommendation(For cure and take care)": "\n1. Apply insecticidal soap to control soft-bodied insects like aphids and whiteflies. \n2. Introduce biological control agents like neem oil to target specific pests. \n3. Prune affected plant parts to reduce pest habitats and spread. \n4. Use synthetic insecticides in severe cases, following safe application guidelines."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "Leaf Spot Disease",
+    "Symptoms": "\n1. Small, dark, water-soaked spots with yellow halos on leaves. \n2. Spots may enlarge, causing the tissue to necrotize and fall off. \n3. Dark, irregular lesions with concentric rings on leaves and stems. \n4. Premature leaf drop due to extensive tissue damage. \n5. Reduced plant vigor and stunted growth from severe infections.",
+    "Recommendations(for prevention)": "\n1. Practice crop rotation to avoid soil-borne pathogens and reduce reinfection risks. \n2. Avoid overhead irrigation to reduce moisture on leaves and prevent spore spread. \n3. Remove infected leaves promptly to prevent disease spread to healthy tissues. \n4. Use fungicides that target leaf spot pathogens as a preventive measure. \n5. Maintain proper plant spacing for air circulation to reduce humidity around plants.",
+    "Recommendation(For cure and take care)": "\n1. Apply copper-based fungicides to control fungal leaf spot pathogens. \n2. Use systemic fungicides to prevent further fungal growth within plant tissues. \n3. Remove heavily infected plant parts and dispose of them to limit disease spread. \n4. Water plants at the base to prevent moisture on leaves and minimize infection risk."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "Mosaic Virus Disease",
+    "Symptoms": "\n1. Yellow or light green mottling and streaks on leaves, often in a mosaic pattern. \n2. Leaves may become deformed, curled, or twisted due to virus infection. \n3. Reduced plant growth with stunted development of shoots and roots. \n4. Poor fruit set, with deformed or discolored fruits. \n5. Chlorosis (yellowing) and necrosis (tissue death) on the leaf veins.",
+    "Recommendations(for prevention)": "\n1. Use virus-resistant eggplant varieties to reduce the risk of infection. \n2. Remove and destroy infected plants immediately to prevent virus spread. \n3. Control aphids and other insect vectors that transmit the virus. \n4. Avoid working with plants when they are wet to prevent spreading virus on tools. \n5. Practice crop rotation to break the virus cycle and reduce reinfection.",
+    "Recommendation(For cure and take care)": "\n1. There is no cure for mosaic virus; infected plants should be removed and destroyed. \n2. Implement proper pest control to prevent virus transmission by insects. \n3. Apply insecticides or organic repellents to control aphids and other vectors. \n4. Clean tools and equipment regularly to avoid cross-contamination between plants."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "Small Leaf Disease",
+    "Symptoms": "\n1. Leaves become unusually small, often with a distorted or shriveled appearance. \n2. Leaf veins may appear yellow or show abnormal patterns of discoloration. \n3. Stunted growth of the entire plant, with poor development of shoots and roots. \n4. Premature leaf drop, leaving the plant with sparse foliage. \n5. Reduced fruit size and yield due to weakened plant vigor.",
+    "Recommendations(for prevention)": "\n1. Use disease-free seeds and certified planting material to avoid contamination. \n2. Ensure balanced fertilization, especially adequate nitrogen, to promote healthy leaf growth. \n3. Rotate crops with non-host plants to break the disease cycle. \n4. Control vector pests like mites and thrips, which spread the disease. \n5. Maintain proper irrigation practices to avoid water stress that weakens plants.",
+    "Recommendation(For cure and take care)": "\n1. Prune infected parts to limit the spread of the disease to healthy foliage. \n2. Apply neem oil or insecticidal soaps to control vector pests spreading the disease. \n3. Use foliar sprays containing micronutrients like zinc and magnesium to promote healthy growth. \n4. Improve soil health with organic compost to boost plant immunity and recovery."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "White Mold Disease",
+    "Symptoms": "\n1. White, cottony fungal growth appears on stems, leaves, or near the soil line. \n2. Water-soaked lesions on stems and branches that eventually turn brown and dry. \n3. Wilting of leaves and stems, especially during warm, humid conditions. \n4. Development of black sclerotia (hardened fungal structures) on infected plant tissues. \n5. Poor plant vigor and yield due to widespread infection",
+    "Recommendations(for prevention)": "\n1. Ensure proper spacing between plants to improve air circulation and reduce humidity. \n2. Avoid overhead irrigation; water plants at the base to keep foliage dry. \n3. Rotate crops with non-host plants like cereals to break the disease cycle. \n4. Remove plant debris from the field as it can harbor fungal spores. \n5. Use resistant eggplant varieties or certified disease-free seeds for planting.",
+    "Recommendation(For cure and take care)": "\n1. Apply fungicides containing active ingredients like thiophanate-methyl or boscalid for disease control. \n2. Remove and destroy infected plants or parts to prevent further spread of the mold. \n3. Use soil treatments with biological controls like Trichoderma to suppress the pathogen. \n4. Incorporate organic compost to improve soil health and reduce fungal proliferation."
+  },
+  {
+    "Plant": "Eggplant",
+    "Disease": "Wilt Disease",
+    "Symptoms": "\n1. Sudden wilting of leaves and branches despite adequate watering. \n2. Yellowing and browning of leaves, starting from the lower parts of the plant. \n3. Stunted growth with poorly developed roots and shoots. \n4. Dark brown discoloration in vascular tissues when stems are cut open. \n5. Premature leaf drop and eventual plant death in severe cases.",
+    "Recommendations(for prevention)": "\n1. Use wilt-resistant eggplant varieties to reduce susceptibility to the disease. \n2. Rotate crops with non-host plants like cereals to limit pathogen buildup in soil. \n3. Avoid overwatering and ensure proper soil drainage to prevent waterlogging. \n4. Sterilize soil or use soil solarization techniques to kill wilt-causing pathogens. \n5. Remove and destroy plant debris and weeds that can harbor the disease.",
+    "Recommendation(For cure and take care)": "\n1. Drench the soil with fungicides containing carbendazim or mancozeb to suppress soil-borne pathogens. \n2. Apply biological control agents like Trichoderma or Pseudomonas to combat the disease naturally. \n3. Prune infected plant parts and sterilize tools to prevent further spread. \n4. Incorporate organic amendments like compost to improve soil health and plant immunity."
+  }
+]

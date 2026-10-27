@@ -84,10 +84,14 @@ This repository now includes a local web app for uploading a leaf photo and view
 
 The app uses `model.keras` and `class_names.json` from the repository root. It does not need to download the dataset to make predictions.
 
-### Recommendation modes
+### Website workflow and recommendation modes
 
-- **Reference Mode** shows a fixed starter guide selected from the predicted class. It provides conservative general steps and is not a substitute for locally verified agricultural advice.
-- **LLM Mode** can generate tailored guidance from the predicted class and optional observations. It requires an OpenAI API key; without one, Reference Mode still works.
+After a photo is uploaded, the site prepares it using the model's 75 × 75 input size and predicts one of 35 classes. It then offers:
+
+- **Reference Mode** looks up the predicted plant and disease in `recommendations.json`. This 35-entry reference file was recovered from the included Android app and displays its symptoms, prevention, and care text. The material is not locally verified agricultural advice; confirm diagnoses and treatment choices with an agricultural expert and follow local product labels and rules.
+- **LLM Mode** can create cautious guidance from the predicted class and optional observations. It requires an OpenAI API key; without one, Reference Mode still works. The predicted class, score, and optional note are sent to the OpenAI API when the user requests guidance. Do not enter personal or sensitive information.
+- **Grad-CAM focus map** is generated only when requested. It highlights image regions that influenced the class score; it is an explanation aid, not proof of a correct diagnosis.
+- **Workflow and evaluation** shows the preprocessing and classification steps plus confusion-matrix and ROC images saved from the notebook. These are static notebook outputs and are not recalculated for each upload. The notebook currently uses an 85/15 train-test split; it does not implement cross-validation or automated hyperparameter tuning.
 
 To enable LLM Mode on Streamlit Community Cloud, open the app's **Settings → Secrets** and add:
 
