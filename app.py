@@ -58,7 +58,8 @@ st.markdown("""
   .hint { color:var(--muted); font-size:.88rem; margin:.65rem 0 1.7rem; }
   .panel { background:#fff; border:1px solid var(--line); border-radius:20px; padding:1rem; box-shadow:0 8px 28px rgba(26,56,35,.055); }
   .photo-caption { color:var(--muted); font-size:.8rem; margin:.25rem 0 .6rem; }
-  [data-testid="stImage"] img { border-radius:14px; }
+  [data-testid="stImage"] { display:flex; justify-content:center; }
+  [data-testid="stImage"] img { border-radius:14px; width:auto !important; max-width:100% !important; height:auto !important; object-fit:contain; image-rendering:auto; }
   .result-card { height:100%; background:#fff; border:1px solid var(--line); border-radius:20px; padding:1.35rem; box-shadow:0 8px 28px rgba(26,56,35,.055); }
   .result-kicker { color:var(--leaf); font-size:.77rem; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
   .result-plant { color:var(--muted); font-size:1rem; margin-top:1.1rem; }
@@ -280,6 +281,13 @@ if upload is not None:
                 with st.container(border=True):
                     st.markdown('<div class="photo-caption">YOUR PHOTO</div>', unsafe_allow_html=True)
                     st.image(image, width="stretch")
+                    st.caption("The classifier analyzes a 75 × 75 copy of this photo. A sharp, well-lit original gives it the best detail available to the model.")
+                    if min(image.size) < 500:
+                        st.caption(
+                            f"Photo size: {image.width} × {image.height} pixels. This source is small, "
+                            "so it may look blocky when enlarged. For a clearer preview, upload the "
+                            "original photo rather than a thumbnail or screenshot."
+                        )
             with right:
                 result_html = f'''<div class="result-card">
                   <div class="result-kicker">PlantCareNet result</div>
