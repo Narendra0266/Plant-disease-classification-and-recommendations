@@ -210,12 +210,28 @@ def read_secret(name, default=None):
 
 def generate_llm_guidance(label, confidence, user_context, api_key, model_name):
     """Ask the OpenAI Responses API for cautious, contextual plant-care guidance."""
+    is_healthy = "healthy" in label.lower()
+    if is_healthy:
+        response_sections = (
+            "Use headings: Result explanation, Healthy crop prevention tips, and "
+            "Related quantitative guidance. Explain that the image appears consistent "
+            "with a healthy class, not that the whole crop is disease-free."
+        )
+    else:
+        response_sections = (
+            "Use headings: Detailed disease description, Symptoms to inspect, Prevention, "
+            "Care and safe next steps, and Related quantitative guidance."
+        )
     instructions = (
         "You are a cautious plant-care information assistant. The disease label is an "
         "image-classifier prediction, not a confirmed diagnosis; its score is not a "
         "calibrated probability. Do not claim certainty or invent symptoms. Give concise, "
         "low-risk next steps, what the user should inspect, and prevention suggestions. "
-        "Structure the answer with headings: Symptoms to inspect, Prevention, and Safe next steps. "
+        f"{response_sections} "
+        "For quantitative guidance, use only safe monitoring measures or values supported "
+        "by the supplied context. Do not invent dosage, application rate, water amount, "
+        "temperature threshold, or treatment schedule; if crop, location, or growing "
+        "conditions are missing, say what should be measured and recommend local guidance. "
         "Do not recommend pesticide or fungicide brands, chemical doses, or treatment "
         "schedules. Encourage confirmation by a local agricultural extension service "
         "before treatment. State that advice can vary by crop and location."
@@ -248,26 +264,36 @@ def generate_llm_guidance(label, confidence, user_context, api_key, model_name):
     return answer
 
 st.markdown('<div class="section-label">Start with a leaf photo</div>', unsafe_allow_html=True)
-recommendation_mode = st.radio(
-    "Choose recommendation mode",
-    ["Reference Mode", "LLM Mode"],
-    horizontal=True,
-    help="Reference Mode gives a fixed, cautious guide. LLM Mode creates tailored guidance from the predicted class and your optional notes.",
-)
 upload = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png", "webp"], label_visibility="collapsed")
 st.markdown('<div class="hint">JPG, PNG, or WEBP · One leaf in focus · Natural light works best</div>', unsafe_allow_html=True)
 
 if upload is not None:
     try:
+        labels = load_labels()
+        crop_names = sorted({label.split("_", 1)[0].replace("EggPlant", "Eggplant") for label in labels})
+        selected_crop = st.selectbox("Select crop type", crop_names, help="Choose the crop shown in the uploaded photo. Predictions will be ranked among this crop’s model classes.")
+        recommendation_mode = st.radio(
+            "Choose recommendation mode",
+            ["Standard Advice", "LLM Mode"],
+            horizontal=True,
+            help="Standard Advice uses the bundled reference guide. LLM Mode creates tailored guidance and requires an API key.",
+        )
         image, model_input = prepare_image(upload)
         with st.spinner("Checking the image…"):
             model = load_model()
-            labels = load_labels()
             scores = np.asarray(model.predict(model_input, verbose=0))[0]
         if len(scores) != len(labels):
             st.error(f"Model has {len(scores)} outputs but the label file has {len(labels)} classes.")
         else:
-            order = np.argsort(scores)[::-1]
+            crop_indices = [
+                index for index, label in enumerate(labels)
+                if label.split("_", 1)[0].replace("EggPlant", "Eggplant") == selected_crop
+            ]
+            if not crop_indices:
+                st.error(f"No model classes are available for {selected_crop}.")
+                st.stop()
+            crop_order = np.argsort(scores[crop_indices])[::-1]
+            order = np.asarray([crop_indices[position] for position in crop_order])
             predicted_label = labels[int(order[0])]
             plant, condition = readable_label(predicted_label)
             confidence = float(scores[order[0]])
@@ -303,15 +329,21 @@ if upload is not None:
                 if confidence < 0.45:
                     st.markdown('<div class="notice">The model is uncertain. Try a sharper, closer photo, and compare with a local plant-health expert.</div>', unsafe_allow_html=True)
                 st.subheader("Recommendations")
-                if recommendation_mode == "Reference Mode":
+                if recommendation_mode == "Standard Advice":
                     guide = reference_guidance(predicted_label)
                     if guide:
                         st.caption("Reference guide · bundled with the Android app")
-                        sections = [
-                            ("Symptoms", guide.get("Symptoms", "")),
-                            ("Prevention", guide.get("Recommendations(for prevention)", "")),
-                            ("Care and treatment", guide.get("Recommendation(For cure and take care)", "")),
-                        ]
+                        if "healthy" in predicted_label.lower():
+                            sections = [
+                                ("Healthy crop prevention tips", guide.get("Recommendations(for prevention)", "")),
+                                ("Routine care", guide.get("Recommendation(For cure and take care)", "")),
+                            ]
+                        else:
+                            sections = [
+                                ("Symptoms", guide.get("Symptoms", "")),
+                                ("Prevention", guide.get("Recommendations(for prevention)", "")),
+                                ("Care and treatment", guide.get("Recommendation(For cure and take care)", "")),
+                            ]
                         for title, detail in sections:
                             if detail.strip():
                                 st.markdown(
@@ -364,10 +396,10 @@ else:
 with st.expander("How the PlantCareNet workflow works"):
     steps = st.columns(4)
     workflow = [
-        ("01 · Dataset", "The project model recognizes 35 plant-health classes."),
-        ("02 · Preprocess", "Images are converted, resized to 75 × 75, and scaled to 0–1."),
-        ("03 · Classify", "A CNN produces class scores; the highest score becomes the displayed prediction."),
-        ("04 · Evaluate", "The notebook includes a confusion matrix and multiclass ROC chart from its saved evaluation run."),
+        ("01 · Upload image", "Choose a clear photo of one leaf."),
+        ("02 · Select crop", "Choose the crop; the app ranks its matching classes."),
+        ("03 · Choose mode", "Use Standard Advice or request AI-generated guidance."),
+        ("04 · View results", "See the prediction, care guidance, and optional focus map."),
     ]
     for column, (title, detail) in zip(steps, workflow):
         with column:

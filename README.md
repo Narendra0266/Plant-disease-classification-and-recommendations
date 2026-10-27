@@ -86,10 +86,11 @@ The app uses `model.keras` and `class_names.json` from the repository root. It d
 
 ### Website workflow and recommendation modes
 
-After a photo is uploaded, the site prepares it using the model's 75 × 75 input size and predicts one of 35 classes. It then offers:
+The site follows the app flow: upload a leaf image, select its crop, choose a recommendation mode, and view the result. Selecting the crop filters the model's 35 class scores to that crop, so the selected crop must match the photo. The image is prepared at the model's 75 × 75 input size. The result then offers:
 
-- **Reference Mode** looks up the predicted plant and disease in `recommendations.json`. This 35-entry reference file was recovered from the included Android app and displays its symptoms, prevention, and care text. The material is not locally verified agricultural advice; confirm diagnoses and treatment choices with an agricultural expert and follow local product labels and rules.
-- **LLM Mode** can create cautious guidance from the predicted class and optional observations. It requires an OpenAI API key; without one, Reference Mode still works. The predicted class, score, and optional note are sent to the OpenAI API when the user requests guidance. Do not enter personal or sensitive information.
+- **Standard Advice** looks up the predicted plant and disease in `recommendations.json`. For a disease class, it displays symptoms, prevention, and care text. For a healthy class, it displays prevention tips and routine care. This 35-entry reference file was recovered from the included Android app; the material is not locally verified agricultural advice. Confirm diagnoses and treatment choices with an agricultural expert and follow local product labels and rules.
+- **LLM Mode** can create cautious guidance from the predicted class and optional observations. It requires an OpenAI API key; without one, Standard Advice still works. The predicted class, score, and optional note are sent to the OpenAI API when the user requests guidance. Do not enter personal or sensitive information.
+- **AI response paths** differ by predicted class: healthy classes receive prevention tips; disease classes receive a description, symptoms to inspect, prevention, and safe next steps. Related quantitative guidance must not invent treatment rates or thresholds; it should explain what to measure when crop/location details are insufficient.
 - **Grad-CAM focus map** is generated only when requested. It highlights image regions that influenced the class score; it is an explanation aid, not proof of a correct diagnosis.
 - **Workflow and evaluation** shows the preprocessing and classification steps plus confusion-matrix and ROC images saved from the notebook. These are static notebook outputs and are not recalculated for each upload. The notebook currently uses an 85/15 train-test split; it does not implement cross-validation or automated hyperparameter tuning.
 
